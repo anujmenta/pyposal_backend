@@ -1,12 +1,15 @@
 {
   "name": "project-pikachu",
   "version": "1.0.0",
+  "homepage" : "https://anujmenta.github.io/pyposal_backend",
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "build:start": "cd dist && PORT=8080 npx serve",
     "start": "webpack serve --open --mode development",
-    "start:live": "webpack serve --open --mode development --live-reload --hot"
+    "start:live": "webpack serve --open --mode development --live-reload --hot",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "license": "MIT",
   "author": {
@@ -22,6 +25,7 @@
     "autoprefixer": "^10.4.5",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.3.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.3.2",
     "postcss": "^8.4.12",
     "postcss-loader": "^4.1.0",

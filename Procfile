@@ -1,1 +1,1 @@
-web: node src/AuthServer.js && npm start
+web: node src/AuthServer.js
