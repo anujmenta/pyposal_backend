@@ -25,7 +25,7 @@ const oidcConfig = {
     console.log(user);
     window.location.hash = '';
   },
-  authority: 'localhost:3001/',
+  authority: 'https://pyposal.herokuapp.com',
   clientId: "95JrEmveXLKNN7lx8fp7pdBVeWLVtttf",
   responseType: "token",
   scope: "everything",

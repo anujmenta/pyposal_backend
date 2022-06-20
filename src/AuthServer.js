@@ -8,12 +8,12 @@ app.get('/.well-known/openid-configuration', (req, res) => {
     res.setHeader('access-control-allow-origin', '*');
     res.send({
         "issuer": "https://pushbullet.com",
-        "authorization_endpoint": "https://pushbullet.com/o/oauth2/authorize",
-        "device_authorization_endpoint": "https://pushbullet.com/o/oauth2/authorize",
-        "token_endpoint": "https://pushbullet.com/o/oauth2/authorize",
-        "userinfo_endpoint": "https://pushbullet.com/o/oauth2/authorize",
-        "revocation_endpoint": "https://pushbullet.com/o/oauth2/authorize",
-        "jwks_uri": "https://pushbullet.com/o/oauth2/authorize",
+        "authorization_endpoint": "https://pushbullet.com/authorize",
+        "device_authorization_endpoint": "https://pushbullet.com/authorize",
+        "token_endpoint": "https://pushbullet.com/authorize",
+        "userinfo_endpoint": "https://pushbullet.com/authorize",
+        "revocation_endpoint": "https://pushbullet.com/authorize",
+        "jwks_uri": "https://pushbullet.com/authorize",
         "response_types_supported": [
          "token",
         ],
