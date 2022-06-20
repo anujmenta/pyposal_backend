@@ -3,6 +3,7 @@ import { useAuth } from 'oidc-react';
 /* This example requires Tailwind CSS v2.0+ */
 export default function Example() {
     const auth = useAuth();
+    console.log(auth);
     if (auth && auth.userData) {
     return (
       <div className="bg-gray-50 pt-12 sm:pt-16">

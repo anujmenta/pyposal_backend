@@ -9,11 +9,6 @@ app.get('/.well-known/openid-configuration', (req, res) => {
     res.send({
         "issuer": "https://pushbullet.com",
         "authorization_endpoint": "https://pushbullet.com/authorize",
-        "device_authorization_endpoint": "https://pushbullet.com/authorize",
-        "token_endpoint": "https://pushbullet.com/authorize",
-        "userinfo_endpoint": "https://pushbullet.com/authorize",
-        "revocation_endpoint": "https://pushbullet.com/authorize",
-        "jwks_uri": "https://pushbullet.com/authorize",
         "response_types_supported": [
          "token",
         ],
