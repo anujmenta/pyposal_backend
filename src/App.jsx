@@ -29,7 +29,7 @@ const oidcConfig = {
   clientId: "95JrEmveXLKNN7lx8fp7pdBVeWLVtttf",
   responseType: "token",
   scope: "everything",
-  redirectUri: "localhost:3000",
+  redirectUri: "localhost:3000/",
   postLogoutRedirectUri: "https://localhost:3000/",
 };
 
