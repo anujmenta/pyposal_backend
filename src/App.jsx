@@ -25,10 +25,10 @@ const oidcConfig = {
     console.log(user);
     window.location.hash = '';
   },
-  authority: 'https://pyposal.herokuapp.com',
-  clientId: "95JrEmveXLKNN7lx8fp7pdBVeWLVtttf",
-  responseType: "token",
-  scope: "everything",
+  authority: 'https://accounts.google.com',
+  clientId: "69599350005-ea9jugb6i6ub30jucd1sjsgmgk4jijrc.apps.googleusercontent.com",
+  responseType: "id_token",
+  scope: "openid",
   redirectUri: "https://anujmenta.github.io/pyposal_backend/",
   postLogoutRedirectUri: "https://anujmenta.github.io/pyposal_backend/",
 };
