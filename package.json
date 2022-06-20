@@ -1,7 +1,7 @@
 {
   "name": "project-pikachu",
   "version": "1.0.0",
-  "homepage" : "https://anujmenta.github.io/pyposal_backend",
+  "homepage": "https://anujmenta.github.io/pyposal_backend",
   "scripts": {
     "build": "webpack --mode production --config=./webpack.prod.js",
     "build:dev": "webpack --mode development",
@@ -37,6 +37,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
+    "@headlessui/react": "^1.6.5",
+    "@heroicons/react": "^1.0.6",
     "express": "^4.18.1",
     "oidc-react": "^1.5.1",
     "react": "^17.0.2",
