@@ -29,7 +29,7 @@ const oidcConfig = {
   clientId: "95JrEmveXLKNN7lx8fp7pdBVeWLVtttf",
   responseType: "token",
   scope: "everything",
-  redirectUri: "https://localhost:3000/callback",
+  redirectUri: "localhost:3000",
   postLogoutRedirectUri: "https://localhost:3000/",
 };
 
