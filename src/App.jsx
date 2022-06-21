@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {Login} from "./Login";
-import { LandingPage } from "./LandingPage";
+import { Login } from "./Login";
 import { AuthProvider } from "oidc-react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./index.scss";
 
@@ -23,11 +21,8 @@ const oidcConfig = {
 };
 
 const App = () => (
-  <Router>
-    <Routes>
-      <Route exact path="/" element={<LandingPage/>} />
-      <Route path="/login" element = {<AuthProvider {...oidcConfig}><Login/></AuthProvider>}/>
-    </Routes>
-  </Router>
+  <AuthProvider {...oidcConfig}>
+  <Login/>
+  </AuthProvider>
 );
 ReactDOM.render(<App />, document.getElementById("app"));
