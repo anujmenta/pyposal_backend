@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from 'oidc-react';
 
 /* This example requires Tailwind CSS v2.0+ */
-import { Popover } from '@headlessui/react'
+import { Popover, Switch } from '@headlessui/react'
 /*
   This example requires Tailwind CSS v2.0+ 
   
@@ -42,7 +42,7 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 const user = {
   name: 'Whitney Francis',
   email: 'whitney.francis@example.com',
-  imageUrl:
+  picture:
     'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
@@ -52,11 +52,11 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 const tabs = [
-  { name: 'Applied', href: '#', count: '2', current: false },
-  { name: 'Phone Screening', href: '#', count: '4', current: false },
-  { name: 'Interview', href: '#', count: '6', current: true },
-  { name: 'Offer', href: '#', current: false },
-  { name: 'Disqualified', href: '#', current: false },
+  { name: 'All', href: '#', count:'1', current: true },
+  { name: 'Applied', href: '#', current: false },
+  { name: 'Accepted', href: '#', current: false },
+  { name: 'Past', href: '#', current: false },
+  { name: 'Rejected', href: '#', current: false },
 ]
 const candidates = [
   {
@@ -70,9 +70,21 @@ const candidates = [
   },
   // More candidates...
 ]
+
+const conferences = [
+  {
+    name: 'PyCon US',
+    date: 'January 7, 2020',
+    dateTime: '2020-07-01T15:34:56',
+    location: 'San Francisco, CA',
+    website: 'https://us.pycon.org/2022/',
+    cfopdate: '2020-07-01T15:34:56',
+    subscribed: true,
+  }
+]
 const publishingOptions = [
-  { name: 'Published', description: 'This job posting can be viewed by anyone who has the link.', current: true },
-  { name: 'Draft', description: 'This job posting will no longer be publicly accessible.', current: false },
+  { name: 'All', description: 'Show the list of all the available conferences', current: true },
+  { name: 'Subscribed', description: 'Show the list of conferences you are subscribed to', current: false },
 ]
 
 function classNames(...classes) {
@@ -82,7 +94,9 @@ function classNames(...classes) {
 export default function Example() {
   const [selected, setSelected] = useState(publishingOptions[0])
   const auth = useAuth();
-  console.log(auth.userData);
+  const userData = auth.userData?.profile;
+  console.log("Auth Profile", auth);
+  console.log('User Data', userData);
   if (auth && auth.userData) {
   return (
     <>
@@ -178,7 +192,7 @@ export default function Example() {
                         <div>
                           <Menu.Button className="bg-gray-50 rounded-full flex text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500">
                             <span className="sr-only">Open user menu</span>
-                            <img className="rounded-full h-8 w-8" src={user.imageUrl} alt="" />
+                            <img className="rounded-full h-8 w-8" src={userData?.picture} alt="" />
                           </Menu.Button>
                         </div>
                         <Transition
@@ -235,11 +249,11 @@ export default function Example() {
                 <div className="pt-4 pb-3 border-t border-gray-200">
                   <div className="px-5 flex items-center">
                     <div className="flex-shrink-0">
-                      <img className="rounded-full h-10 w-10" src={user.imageUrl} alt="" />
+                      <img className="rounded-full h-10 w-10" src={userData?.picture} alt="" />
                     </div>
                     <div className="ml-3">
-                      <div className="text-base font-medium text-gray-800">{user.name}</div>
-                      <div className="text-sm font-medium text-gray-500">{user.email}</div>
+                      <div className="text-base font-medium text-gray-800">{userData?.name}</div>
+                      <div className="text-sm font-medium text-gray-500">{userData?.email}</div>
                     </div>
                     <button
                       type="button"
@@ -255,6 +269,7 @@ export default function Example() {
                         key={item.name}
                         as="a"
                         href={item.href}
+                        onClick={() => auth.signOut()}
                         className="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100"
                       >
                         {item.name}
@@ -271,49 +286,18 @@ export default function Example() {
         <header className="bg-gray-50 py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:items-center xl:justify-between">
             <div className="flex-1 min-w-0">
-              <nav className="flex" aria-label="Breadcrumb">
-                <ol role="list" className="flex items-center space-x-4">
-                  <li>
-                    <div>
-                      <a href="#" className="text-sm font-medium text-gray-500 hover:text-gray-700">
-                        Jobs
-                      </a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex items-center">
-                      <ChevronRightIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
-                      <a href="#" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                        Engineering
-                      </a>
-                    </div>
-                  </li>
-                </ol>
-              </nav>
               <h1 className="mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                Back End Developer
+                List of all PyCons
               </h1>
               <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-8">
                 <div className="mt-2 flex items-center text-sm text-gray-500">
-                  <BriefcaseIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                  Full-time
-                </div>
-                <div className="mt-2 flex items-center text-sm text-gray-500">
-                  <LocationMarkerIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                  Remote
-                </div>
-                <div className="mt-2 flex items-center text-sm text-gray-500">
-                  <CurrencyDollarIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                  $120k &ndash; $140k
-                </div>
-                <div className="mt-2 flex items-center text-sm text-gray-500">
                   <CalendarIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                  Closing on January 9, 2020
+                  Last updated January 9, 2020
                 </div>
               </div>
             </div>
             <div className="mt-5 flex xl:mt-0 xl:ml-4">
-              <span className="hidden sm:block">
+              {/* <span className="hidden sm:block">
                 <button
                   type="button"
                   className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500"
@@ -331,7 +315,7 @@ export default function Example() {
                   <LinkIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                   View
                 </button>
-              </span>
+              </span> */}
 
               <div className="sm:ml-3 relative z-0">
                 <Listbox value={selected} onChange={setSelected}>
@@ -443,7 +427,6 @@ export default function Example() {
         <main className="pt-8 pb-16">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className="px-4 sm:px-0">
-              <h2 className="text-lg font-medium text-gray-900">Candidates</h2>
 
               {/* Tabs */}
               <div className="sm:hidden">
@@ -496,37 +479,72 @@ export default function Example() {
 
             {/* Stacked list */}
             <ul role="list" className="mt-5 border-t border-gray-200 divide-y divide-gray-200 sm:mt-0 sm:border-t-0">
-              {candidates.map((candidate) => (
-                <li key={candidate.email}>
+              {conferences.map((conference) => (
+                <li key={conference.website}>
                   <a href="#" className="group block">
                     <div className="flex items-center py-5 px-4 sm:py-6 sm:px-0">
                       <div className="min-w-0 flex-1 flex items-center">
                         <div className="flex-shrink-0">
-                          <img
-                            className="h-12 w-12 rounded-full group-hover:opacity-75"
-                            src={candidate.imageUrl}
-                            alt=""
-                          />
+                          <Switch
+                          checked={conference.subscribed}
+                          className={classNames(
+                            conference.subscribed ? 'bg-indigo-600' : 'bg-gray-200',
+                            'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                          )}
+                        >
+                          <span className="sr-only">Use setting</span>
+                          <span
+                            className={classNames(
+                              conference.subscribed ? 'translate-x-5' : 'translate-x-0',
+                              'pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+                            )}
+                          >
+                            <span
+                              className={classNames(
+                                conference.subscribed ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200',
+                                'absolute inset-0 h-full w-full flex items-center justify-center transition-opacity'
+                              )}
+                              aria-hidden="true"
+                            >
+                              <svg className="h-3 w-3 text-gray-400" fill="none" viewBox="0 0 12 12">
+                                <path
+                                  d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
+                                  stroke="currentColor"
+                                  strokeWidth={2}
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </span>
+                            <span
+                              className={classNames(
+                                conference.subscribed ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100',
+                                'absolute inset-0 h-full w-full flex items-center justify-center transition-opacity'
+                              )}
+                              aria-hidden="true"
+                            >
+                              <svg className="h-3 w-3 text-indigo-600" fill="currentColor" viewBox="0 0 12 12">
+                                <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                              </svg>
+                            </span>
+                          </span>
+                        </Switch>
                         </div>
                         <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                           <div>
-                            <p className="text-sm font-medium text-purple-600 truncate">{candidate.name}</p>
+                            <p className="text-sm font-medium text-purple-600 truncate">{conference.name}</p>
                             <p className="mt-2 flex items-center text-sm text-gray-500">
                               <MailIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                              <span className="truncate">{candidate.email}</span>
+                              <span className="truncate">{conference.website}</span>
                             </p>
                           </div>
                           <div className="hidden md:block">
                             <div>
                               <p className="text-sm text-gray-900">
-                                Applied on <time dateTime={candidate.appliedDatetime}>{candidate.applied}</time>
+                                {conference.location}
                               </p>
                               <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <CheckCircleIcon
-                                  className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
-                                  aria-hidden="true"
-                                />
-                                {candidate.status}
+                              <time dateTime={conference.dateTime}>{conference.date}</time>
                               </p>
                             </div>
                           </div>
@@ -562,41 +580,11 @@ export default function Example() {
                 <a
                   href="#"
                   className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+                  aria-current="page"
                 >
                   1
                 </a>
-                {/* Current: "border-purple-500 text-purple-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200" */}
-                <a
-                  href="#"
-                  className="border-purple-500 text-purple-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                  aria-current="page"
-                >
-                  2
-                </a>
-                <a
-                  href="#"
-                  className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                >
-                  3
-                </a>
-                <a
-                  href="#"
-                  className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                >
-                  4
-                </a>
-                <a
-                  href="#"
-                  className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                >
-                  5
-                </a>
-                <a
-                  href="#"
-                  className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                >
-                  6
-                </a>
+                
               </div>
               <div className="-mt-px w-0 flex-1 flex justify-end">
                 <a
