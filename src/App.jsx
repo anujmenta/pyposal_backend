@@ -7,7 +7,6 @@ import "./index.scss";
 
 const oidcConfig = {
   onSignIn: async (user) => {
-    alert('You just signed in, congratz! Check out the console!');
     console.log("Printing User from App.jsx", user);
     window.location.hash = '';
   },
