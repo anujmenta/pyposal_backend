@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import { Login } from "./Login";
 import { AuthProvider } from "oidc-react";
 
 import "./index.scss";
+import { LandingPage } from "./LandingPage";
 
 const oidcConfig = {
   onSignIn: async (user) => {
@@ -21,8 +23,14 @@ const oidcConfig = {
 };
 
 const App = () => (
-  <AuthProvider {...oidcConfig}>
-  <Login/>
-  </AuthProvider>
+  <>
+  <LandingPage/>
+  <BrowserRouter>
+  <Routes>
+    <Route path="/login" element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>}>
+    </Route>
+  </Routes>
+  </BrowserRouter>
+  </>
 );
 ReactDOM.render(<App />, document.getElementById("app"));
