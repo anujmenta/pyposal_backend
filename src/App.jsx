@@ -27,7 +27,7 @@ const App = () => (
   <LandingPage/>
   <BrowserRouter>
   <Routes>
-    <Route path="/login" element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>}>
+    <Route path="/pyposal_backend/login" element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>}>
     </Route>
   </Routes>
   </BrowserRouter>
