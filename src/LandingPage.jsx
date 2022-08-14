@@ -69,7 +69,7 @@ export function LandingPage(){
             <div className="hidden md:block text-right">
               <span className="inline-flex rounded-md shadow-md ring-1 ring-black ring-opacity-5">
                 <a
-                  href="/login"
+                  href="/pyposal_backend/login"
                   className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-lime-600 bg-white hover:bg-gray-50"
                 >
                   Log in
@@ -119,7 +119,7 @@ export function LandingPage(){
                   ))}
                 </div>
                 <a
-                  href="/login"
+                  href="/pyposal_backend/login"
                   className="block w-full px-5 py-3 text-center font-medium text-lime-600 bg-gray-50 hover:bg-gray-100"
                 >
                   Log in

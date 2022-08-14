@@ -1,1 +1,1 @@
-web: node src/AuthServer.js
+web: node src/server.js

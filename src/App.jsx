@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom";
 import { Login } from "./Login";
 import { AuthProvider } from "oidc-react";
 
@@ -25,12 +25,16 @@ const oidcConfig = {
 const App = () => (
   <>
   <LandingPage/>
-  <BrowserRouter>
   <Routes>
-    <Route path="/pyposal_backend/login" element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>}>
-    </Route>
+    <Route path={"/login"} element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>} render={()=> <AuthProvider {...oidcConfig}><Login/></AuthProvider>}/>
+    <Route path={"/pyposal_backend/login"} element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>} render={()=> <AuthProvider {...oidcConfig}><Login/></AuthProvider>}/>
   </Routes>
-  </BrowserRouter>
   </>
 );
-ReactDOM.render(<App />, document.getElementById("app"));
+
+ReactDOM.render(
+<React.StrictMode>
+  <HashRouter>
+<App />
+  </HashRouter>
+</React.StrictMode>, document.getElementById("app"));
