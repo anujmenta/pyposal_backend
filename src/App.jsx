@@ -21,6 +21,8 @@ const oidcConfig = {
   postLogoutRedirectUri: "https://anujmenta.github.io/pyposal_backend/",
 };
 
+console.log(oidcConfig);
+
 const App = () => (
 <AuthProvider {...oidcConfig}>
     <Login/>
