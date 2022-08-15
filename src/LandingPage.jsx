@@ -164,13 +164,6 @@ export function LandingPage(){
                     Notify me
                   </button>
                 </form>
-                <p className="mt-3 text-sm text-gray-500">
-                  We care about the protection of your data. Read our 
-                  <a href="#" className="font-medium text-gray-900 underline">
-                    Privacy Policy
-                  </a>
-                  .
-                </p>
               </div>
             </div>
             <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
