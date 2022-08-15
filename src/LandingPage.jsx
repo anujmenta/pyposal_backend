@@ -146,7 +146,7 @@ export function LandingPage(){
               </p>
               <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                 <p className="text-base font-medium text-gray-900">Sign up to get notified when it’s ready.</p>
-                <form action="#" method="POST" className="mt-3 sm:flex">
+                <form action="https://forms.un-static.com/forms/3061254336375e1cd8c32ee2693bc3773c3b88a0" method="POST" className="mt-3 sm:flex">
                   <label htmlFor="email" className="sr-only">
                     Email
                   </label>
