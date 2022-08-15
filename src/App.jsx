@@ -23,14 +23,8 @@ const oidcConfig = {
 };
 
 const App = () => (
-  <>
-  <LandingPage/>
-  <BrowserRouter>
-  <Routes>
-    <Route exact path="/login" element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>}/>
-    <Route exact path="/pyposal_backend/login" element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>}/>
-  </Routes>
-  </BrowserRouter>
-  </>
+<AuthProvider {...oidcConfig}>
+    <Login/>
+</AuthProvider>
 );
 ReactDOM.render(<App />, document.getElementById("app"));
