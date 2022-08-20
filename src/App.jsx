@@ -23,6 +23,13 @@ const oidcConfig = {
 };
 
 const App = () => (
-  <LandingPage />
+  <>
+  <LandingPage/>
+  <BrowserRouter>
+  <Routes>
+    <Route path="/login" element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>}/>
+  </Routes>
+  </BrowserRouter>
+  </>
 );
 ReactDOM.render(<App />, document.getElementById("app"));
