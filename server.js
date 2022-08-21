@@ -11,7 +11,7 @@ app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-app.get('*', (req, res) => {
+app.get('/app', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
