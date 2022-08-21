@@ -28,7 +28,7 @@ const App = () => (
 <>
 <BrowserRouter>
 <Routes>
-  <Route path="/home" element={<LandingPage />} />
+  <Route path="/" element={<LandingPage />} />
   <Route path="/app" element={<AuthProvider {...oidcConfig}><Login/></AuthProvider>} />
 </Routes>
 </BrowserRouter>
