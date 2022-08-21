@@ -17,8 +17,8 @@ const oidcConfig = {
   scope: "openid profile email",
   redirectUri: process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/'
-      : 'https://anujmenta.github.io/pyposal_backend/',
-  postLogoutRedirectUri: "https://anujmenta.github.io/pyposal_backend/",
+      : 'https://pyposa.herokuapp.com',
+  postLogoutRedirectUri: "https://pyposa.herokuapp.com",
 };
 
 console.log(oidcConfig);
