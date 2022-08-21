@@ -18,7 +18,7 @@ const oidcConfig = {
   redirectUri: process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/'
       : 'https://pyposa.herokuapp.com',
-  postLogoutRedirectUri: "https://pyposa.herokuapp.com",
+  postLogoutRedirectUri: "https://pyposal.herokuapp.com",
 };
 
 console.log(oidcConfig);
